@@ -1,3 +1,5 @@
+export const dynamic = 'force-dynamic';
+
 import { db } from '@/lib/db';
 import { leads, portfolioItems } from '@/lib/db/schema';
 import { desc, count } from 'drizzle-orm';
