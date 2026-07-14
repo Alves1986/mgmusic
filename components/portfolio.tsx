@@ -1,66 +1,68 @@
 import Image from 'next/image'
 import { Play, ArrowRight } from 'lucide-react'
 import { SectionTitle } from './section-title'
+import { db } from '@/lib/db'
+import { portfolioItems } from '@/lib/db/schema'
+import { desc } from 'drizzle-orm'
 
 const fallbackItems = [
   {
-    image: '/portfolio-1.png',
     title: 'Giselli Cristina - Clipe Oficial',
     tag: 'GOSPEL',
     href: 'https://www.youtube.com/watch?v=CD44VmWSPMY',
+    image: '/portfolio-1.png',
   },
   {
-    image: '/portfolio-2.png',
     title: 'Moisés Cleyton - Produção',
     tag: 'GOSPEL',
     href: 'https://www.youtube.com/watch?v=eocCJUD1m3w',
+    image: '/portfolio-2.png',
   },
   {
-    image: '/portfolio-3.png',
     title: 'Gravação de Estúdio - Ao Vivo',
     tag: 'AO VIVO',
     href: 'https://www.youtube.com/@GiselliCristinaOficial',
+    image: '/portfolio-3.png',
   },
   {
-    image: '/portfolio-4.png',
     title: 'Mixagem & Masterização',
     tag: 'ÁUDIO',
     href: 'https://www.youtube.com/@GiselliCristinaOficial',
+    image: '/portfolio-4.png',
   },
   {
-    image: '/portfolio-5.png',
     title: 'Hudson Almeida - Clipe Oficial',
     tag: 'VÍDEO',
-    href: 'https://webradiofrutificai.com.br/post/81399/hudson-almeida-lanca-a-versao-de-que-se-abram-os-ceus',
+    href: 'https://webradiofrutificai.com.br/post/81399',
+    image: '/portfolio-5.png',
   },
   {
-    image: '/portfolio-6.png',
     title: 'Edição para Videocast',
     tag: 'PODCAST',
     href: 'https://www.youtube.com/@GiselliCristinaOficial',
+    image: '/portfolio-6.png',
   },
 ]
 
 export async function Portfolio() {
-  let displayItems = fallbackItems;
+  let displayItems = fallbackItems
 
   try {
-    const { db } = await import('@/lib/db')
-    const { portfolioItems } = await import('@/lib/db/schema')
-    const { desc } = await import('drizzle-orm')
-    
-    const items = await db.select().from(portfolioItems).orderBy(desc(portfolioItems.createdAt))
-    
+    const items = await db
+      .select()
+      .from(portfolioItems)
+      .orderBy(desc(portfolioItems.createdAt))
+
     if (items.length > 0) {
-      displayItems = items.map(item => ({
+      displayItems = items.map((item) => ({
         title: item.title,
-        tag: item.genreTag || '',
-        href: item.videoUrl || '#',
-        image: item.thumbnailUrl || '/portfolio-1.png',
+        tag: item.genreTag ?? '',
+        href: item.videoUrl ?? '#',
+        image: item.thumbnailUrl ?? '/portfolio-1.png',
       }))
     }
   } catch {
-    // DB not available, use fallback items
+    // DB unavailable — use fallback
   }
 
   return (
@@ -97,9 +99,7 @@ export async function Portfolio() {
                 </div>
               </div>
               <div className="absolute bottom-0 left-0 w-full bg-gradient-to-t from-black to-transparent p-4">
-                <p className="font-sans text-sm font-medium text-silver-light">
-                  {item.title}
-                </p>
+                <p className="font-sans text-sm font-medium text-silver-light">{item.title}</p>
               </div>
             </a>
           ))}

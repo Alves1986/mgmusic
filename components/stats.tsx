@@ -1,42 +1,36 @@
 import { SectionTitle } from './section-title'
+import { db } from '@/lib/db'
+import { siteSettings } from '@/lib/db/schema'
 
-let db: typeof import('@/lib/db').db | null = null;
-let siteSettingsTable: typeof import('@/lib/db/schema').siteSettings | null = null;
-
-try {
-  const dbModule = require('@/lib/db');
-  const schemaModule = require('@/lib/db/schema');
-  db = dbModule.db;
-  siteSettingsTable = schemaModule.siteSettings;
-} catch {}
+const defaultStats = [
+  { value: '100M+', label: 'OUVINTES IMPACTADOS' },
+  { value: '300+', label: 'PROJETOS REALIZADOS' },
+  { value: '50+', label: 'ARTISTAS DE REFERÊNCIA' },
+]
 
 export async function Stats() {
-  const defaultStats = [
-    { value: '100M+', label: 'OUVINTES IMPACTADOS' },
-    { value: '300+', label: 'PROJETOS REALIZADOS' },
-    { value: '50+', label: 'ARTISTAS DE REFERÊNCIA' },
-  ]
-
-  let stats = defaultStats;
+  let stats = defaultStats
 
   try {
-    if (db && siteSettingsTable) {
-      const settings = await db.select().from(siteSettingsTable)
-      if (settings.length > 0) {
-        const settingsMap = settings.reduce((acc, curr) => {
-          acc[curr.key] = curr.value || ''
-          return acc
-        }, {} as Record<string, string>)
+    const settings = await db.select().from(siteSettings)
 
-        stats = [
-          { value: settingsMap['stat_listeners'] || '100M+', label: 'OUVINTES IMPACTADOS' },
-          { value: settingsMap['stat_projects'] || '300+', label: 'PROJETOS REALIZADOS' },
-          { value: settingsMap['stat_artists'] || '50+', label: 'ARTISTAS DE REFERÊNCIA' },
-        ]
-      }
+    if (settings.length > 0) {
+      const map = settings.reduce(
+        (acc, curr) => {
+          acc[curr.key] = curr.value ?? ''
+          return acc
+        },
+        {} as Record<string, string>,
+      )
+
+      stats = [
+        { value: map['stat_listeners'] ?? '100M+', label: 'OUVINTES IMPACTADOS' },
+        { value: map['stat_projects'] ?? '300+', label: 'PROJETOS REALIZADOS' },
+        { value: map['stat_artists'] ?? '50+', label: 'ARTISTAS DE REFERÊNCIA' },
+      ]
     }
   } catch {
-    // DB not available, use defaults
+    // DB unavailable — use defaults
   }
 
   return (
