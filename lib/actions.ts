@@ -1,47 +1,60 @@
-'use server';
+'use server'
 
-import { signIn } from '@/auth';
-import { AuthError } from 'next-auth';
-import { db } from '@/lib/db';
-import { leads } from '@/lib/db/schema';
+import { signIn } from '@/auth'
+import { AuthError } from 'next-auth'
+import { db } from '@/lib/db'
+import { leads } from '@/lib/db/schema'
+import { z } from 'zod'
+
+// ─── Admin Authentication ─────────────────────────────────────────────────────
 
 export async function authenticate(
   prevState: string | undefined,
   formData: FormData,
-) {
+): Promise<string | undefined> {
   try {
-    await signIn('credentials', Object.fromEntries(formData));
+    await signIn('credentials', Object.fromEntries(formData))
   } catch (error) {
     if (error instanceof AuthError) {
       switch (error.type) {
         case 'CredentialsSignin':
-          return 'Credenciais inválidas.';
+          return 'Email ou senha inválidos.'
         default:
-          return 'Algo deu errado.';
+          return 'Algo deu errado. Tente novamente.'
       }
     }
-    throw error;
+    throw error
   }
 }
 
-export async function saveLead(formData: FormData) {
-  const name = formData.get('name') as string;
-  const email = formData.get('email') as string;
-  const message = formData.get('message') as string;
+// ─── Lead capture ─────────────────────────────────────────────────────────────
 
-  if (!name || !email) {
-    throw new Error('Nome e e-mail são obrigatórios.');
+const leadSchema = z.object({
+  name: z.string().min(2, 'Nome é obrigatório.'),
+  email: z.string().email('Email inválido.'),
+  message: z.string().optional(),
+})
+
+export async function saveLead(formData: FormData): Promise<{ success: boolean; error?: string }> {
+  const parsed = leadSchema.safeParse({
+    name: formData.get('name'),
+    email: formData.get('email'),
+    message: formData.get('message'),
+  })
+
+  if (!parsed.success) {
+    return { success: false, error: parsed.error.issues[0]?.message }
   }
 
   try {
     await db.insert(leads).values({
-      name,
-      email,
-      message,
-    });
-    return { success: true };
+      name: parsed.data.name,
+      email: parsed.data.email,
+      message: parsed.data.message ?? null,
+    })
+    return { success: true }
   } catch (error) {
-    console.error('Failed to save lead:', error);
-    return { success: false, error: 'Falha ao enviar mensagem.' };
+    console.error('[saveLead] DB error:', error)
+    return { success: false, error: 'Falha ao salvar mensagem. Tente novamente.' }
   }
 }
