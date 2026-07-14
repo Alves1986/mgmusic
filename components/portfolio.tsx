@@ -2,21 +2,66 @@ import Image from 'next/image'
 import { Play, ArrowRight } from 'lucide-react'
 import { SectionTitle } from './section-title'
 
-import { db } from '@/lib/db'
-import { portfolioItems } from '@/lib/db/schema'
-import { desc, eq } from 'drizzle-orm'
+const fallbackItems = [
+  {
+    image: '/portfolio-1.png',
+    title: 'Giselli Cristina - Clipe Oficial',
+    tag: 'GOSPEL',
+    href: 'https://www.youtube.com/watch?v=CD44VmWSPMY',
+  },
+  {
+    image: '/portfolio-2.png',
+    title: 'Moisés Cleyton - Produção',
+    tag: 'GOSPEL',
+    href: 'https://www.youtube.com/watch?v=eocCJUD1m3w',
+  },
+  {
+    image: '/portfolio-3.png',
+    title: 'Gravação de Estúdio - Ao Vivo',
+    tag: 'AO VIVO',
+    href: 'https://www.youtube.com/@GiselliCristinaOficial',
+  },
+  {
+    image: '/portfolio-4.png',
+    title: 'Mixagem & Masterização',
+    tag: 'ÁUDIO',
+    href: 'https://www.youtube.com/@GiselliCristinaOficial',
+  },
+  {
+    image: '/portfolio-5.png',
+    title: 'Hudson Almeida - Clipe Oficial',
+    tag: 'VÍDEO',
+    href: 'https://webradiofrutificai.com.br/post/81399/hudson-almeida-lanca-a-versao-de-que-se-abram-os-ceus',
+  },
+  {
+    image: '/portfolio-6.png',
+    title: 'Edição para Videocast',
+    tag: 'PODCAST',
+    href: 'https://www.youtube.com/@GiselliCristinaOficial',
+  },
+]
 
 export async function Portfolio() {
-  const items = await db.select().from(portfolioItems).orderBy(desc(portfolioItems.createdAt))
+  let displayItems = fallbackItems;
 
-  // If no items in DB, we can show a placeholder or nothing.
-  // We map the DB fields to the expected format.
-  const displayItems = items.map(item => ({
-    title: item.title,
-    tag: item.genreTag || '',
-    href: item.videoUrl || '#',
-    image: item.thumbnailUrl || '/portfolio-1.png',
-  }))
+  try {
+    const { db } = await import('@/lib/db')
+    const { portfolioItems } = await import('@/lib/db/schema')
+    const { desc } = await import('drizzle-orm')
+    
+    const items = await db.select().from(portfolioItems).orderBy(desc(portfolioItems.createdAt))
+    
+    if (items.length > 0) {
+      displayItems = items.map(item => ({
+        title: item.title,
+        tag: item.genreTag || '',
+        href: item.videoUrl || '#',
+        image: item.thumbnailUrl || '/portfolio-1.png',
+      }))
+    }
+  } catch {
+    // DB not available, use fallback items
+  }
 
   return (
     <section

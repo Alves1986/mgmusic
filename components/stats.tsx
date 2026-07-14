@@ -1,20 +1,43 @@
 import { SectionTitle } from './section-title'
 
-import { db } from '@/lib/db'
-import { siteSettings } from '@/lib/db/schema'
+let db: typeof import('@/lib/db').db | null = null;
+let siteSettingsTable: typeof import('@/lib/db/schema').siteSettings | null = null;
+
+try {
+  const dbModule = require('@/lib/db');
+  const schemaModule = require('@/lib/db/schema');
+  db = dbModule.db;
+  siteSettingsTable = schemaModule.siteSettings;
+} catch {}
 
 export async function Stats() {
-  const settings = await db.select().from(siteSettings)
-  const settingsMap = settings.reduce((acc, curr) => {
-    acc[curr.key] = curr.value || ''
-    return acc
-  }, {} as Record<string, string>)
-
-  const stats = [
-    { value: settingsMap['stat_listeners'] || '100M+', label: 'OUVINTES IMPACTADOS' },
-    { value: settingsMap['stat_projects'] || '300+', label: 'PROJETOS REALIZADOS' },
-    { value: settingsMap['stat_artists'] || '50+', label: 'ARTISTAS DE REFERÊNCIA' },
+  const defaultStats = [
+    { value: '100M+', label: 'OUVINTES IMPACTADOS' },
+    { value: '300+', label: 'PROJETOS REALIZADOS' },
+    { value: '50+', label: 'ARTISTAS DE REFERÊNCIA' },
   ]
+
+  let stats = defaultStats;
+
+  try {
+    if (db && siteSettingsTable) {
+      const settings = await db.select().from(siteSettingsTable)
+      if (settings.length > 0) {
+        const settingsMap = settings.reduce((acc, curr) => {
+          acc[curr.key] = curr.value || ''
+          return acc
+        }, {} as Record<string, string>)
+
+        stats = [
+          { value: settingsMap['stat_listeners'] || '100M+', label: 'OUVINTES IMPACTADOS' },
+          { value: settingsMap['stat_projects'] || '300+', label: 'PROJETOS REALIZADOS' },
+          { value: settingsMap['stat_artists'] || '50+', label: 'ARTISTAS DE REFERÊNCIA' },
+        ]
+      }
+    }
+  } catch {
+    // DB not available, use defaults
+  }
 
   return (
     <section

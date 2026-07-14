@@ -15,8 +15,13 @@ export function Contact() {
   const action = async (formData: FormData) => {
     setStatus('submitting')
     try {
-      const { saveLead } = await import('@/lib/actions')
-      await saveLead(formData)
+      // Try to save to DB, but don't block if it fails
+      try {
+        const { saveLead } = await import('@/lib/actions')
+        await saveLead(formData)
+      } catch {
+        // DB not available, that's ok - still redirect to WhatsApp
+      }
       
       const text = `Olá! Meu nome é ${nome || '(sem nome)'}.%0AEmail: ${
         email || '(não informado)'
