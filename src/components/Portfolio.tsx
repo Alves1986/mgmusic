@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react'
 import { supabase } from '@/lib/supabase'
-import { Play } from 'lucide-react'
 
 type PortfolioItem = {
   id: string
@@ -26,41 +25,33 @@ export default function Portfolio() {
   }, [])
 
   return (
-    <section id="portfolio" className="bg-[#0A0A0A] py-32 px-8">
-      <div className="mx-auto max-w-7xl">
-        <h2 className="mb-16 font-heading text-5xl font-bold text-[#E0E0E0] text-center tracking-tight">
-          NOSSO <span className="text-[#FFD700]">PORTFÓLIO</span>
-        </h2>
-        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-          {items.map((item) => (
-            <a
-              key={item.id}
-              href={item.video_url || '#'}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group relative overflow-hidden rounded-xl bg-[#121212] border border-[#333333] transition-all hover:-translate-y-2 hover:shadow-[0_0_30px_rgba(255,215,0,0.15)] block"
-            >
-              <div className="aspect-video bg-[#1a1a1a] flex items-center justify-center relative overflow-hidden">
-                {item.thumbnail_url ? (
-                  <img src={item.thumbnail_url} alt={item.title} className="absolute inset-0 w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity" />
-                ) : (
-                  <Play className="h-16 w-16 text-[#FFD700] opacity-50 group-hover:opacity-100 transition-opacity" />
-                )}
-                <div className="absolute inset-0 bg-gradient-to-t from-[#121212] to-transparent opacity-80" />
-              </div>
-              <div className="p-8 relative z-10 -mt-12">
-                {item.genre_tag && (
-                  <span className="inline-block mb-3 rounded-sm border border-[#FFD700]/30 bg-black/80 px-3 py-1 text-[10px] font-bold uppercase tracking-widest text-[#FFD700]">
-                    {item.genre_tag}
-                  </span>
-                )}
-                <h3 className="font-heading text-2xl font-bold text-[#E0E0E0]">{item.title}</h3>
-                <p className="mt-2 font-sans text-sm text-[#C0C0C0]">{item.artist}</p>
-              </div>
-            </a>
-          ))}
+    <section id="portfolio" className="py-20 bg-black relative z-10 border-t border-brand-border/30">
+        <div className="max-w-7xl mx-auto px-4 md:px-8">
+            <h2 className="font-heading text-sm text-brand-silver tracking-[0.3em] uppercase section-title-line mb-16">PORTFÓLIO</h2>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {items.map((item) => (
+                <div key={item.id} className="group relative rounded-xl overflow-hidden aspect-video cursor-pointer border border-brand-border hover:border-brand-gold transition-colors duration-300">
+                    <img src={item.thumbnail_url || "https://images.unsplash.com/photo-1516280440503-6c9fa5ce0170?q=80&w=800&auto=format&fit=crop"} alt={item.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
+                    <div className="absolute inset-0 bg-black/60 group-hover:bg-black/40 transition-colors duration-300"></div>
+                    <a href={item.video_url || '#'} target="_blank" rel="noopener noreferrer" className="absolute inset-0 flex items-center justify-center">
+                        <div className="w-14 h-14 rounded-full bg-brand-gold flex items-center justify-center text-black shadow-lg transform group-hover:scale-110 transition-transform duration-300">
+                            <i className="ph-fill ph-play text-2xl ml-1"></i>
+                        </div>
+                    </a>
+                    <div className="absolute bottom-0 left-0 w-full p-4 bg-gradient-to-t from-black to-transparent pointer-events-none">
+                        <p className="font-body text-sm text-brand-silverLight font-medium">{item.title} {item.artist ? `- ${item.artist}` : ''}</p>
+                    </div>
+                </div>
+                ))}
+            </div>
+            
+            <div className="text-center mt-12">
+                <a href="#" className="inline-flex items-center gap-2 font-heading font-semibold text-brand-gold hover:text-brand-goldLight transition-colors">
+                    Ver canal no YouTube <i className="ph ph-arrow-right"></i>
+                </a>
+            </div>
         </div>
-      </div>
     </section>
   )
 }

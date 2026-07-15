@@ -23,21 +23,24 @@ export default function Stats() {
   }, [])
 
   return (
-    <section className="border-y border-[#333333] bg-[#121212] py-20">
-      <div className="mx-auto flex max-w-5xl flex-col items-center justify-between space-y-12 md:flex-row md:space-y-0 px-8">
-        <div className="text-center">
-          <h2 className="font-heading text-5xl font-bold text-[#FFD700] mb-2">{stats.listeners}</h2>
-          <p className="font-sans text-sm font-semibold uppercase tracking-widest text-[#C0C0C0]">Ouvintes Impactados</p>
+    <section id="produtora" className="py-16 bg-black relative z-10 border-b border-brand-border/30">
+        <div className="max-w-6xl mx-auto px-4">
+            <h2 className="font-heading text-sm text-brand-silver tracking-[0.3em] uppercase section-title-line mb-12">PROVA SOCIAL</h2>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center divide-y md:divide-y-0 md:divide-x divide-brand-border/50">
+                <div className="p-4 transform hover:scale-105 transition-transform duration-300">
+                    <h3 className="font-heading text-5xl md:text-6xl font-bold text-brand-gold mb-2 drop-shadow-md">{stats.listeners}</h3>
+                    <p className="font-body text-brand-silver uppercase tracking-wider text-sm font-semibold">OUVINTES IMPACTADOS</p>
+                </div>
+                <div className="p-4 pt-8 md:pt-4 transform hover:scale-105 transition-transform duration-300">
+                    <h3 className="font-heading text-5xl md:text-6xl font-bold text-brand-gold mb-2 drop-shadow-md">{stats.projects}</h3>
+                    <p className="font-body text-brand-silver uppercase tracking-wider text-sm font-semibold">PROJETOS REALIZADOS</p>
+                </div>
+                <div className="p-4 pt-8 md:pt-4 transform hover:scale-105 transition-transform duration-300">
+                    <h3 className="font-heading text-5xl md:text-6xl font-bold text-brand-gold mb-2 drop-shadow-md">{stats.artists}</h3>
+                    <p className="font-body text-brand-silver uppercase tracking-wider text-sm font-semibold">ARTISTAS DE REFERÊNCIA</p>
+                </div>
+            </div>
         </div>
-        <div className="text-center">
-          <h2 className="font-heading text-5xl font-bold text-[#FFD700] mb-2">{stats.projects}</h2>
-          <p className="font-sans text-sm font-semibold uppercase tracking-widest text-[#C0C0C0]">Projetos Realizados</p>
-        </div>
-        <div className="text-center">
-          <h2 className="font-heading text-5xl font-bold text-[#FFD700] mb-2">{stats.artists}</h2>
-          <p className="font-sans text-sm font-semibold uppercase tracking-widest text-[#C0C0C0]">Artistas de Referência</p>
-        </div>
-      </div>
     </section>
   )
 }

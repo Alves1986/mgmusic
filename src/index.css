@@ -1,23 +1,69 @@
 @import "tailwindcss";
 
 @theme {
-  --color-gold: #FFD700;
-  --color-gold-light: #FFEB73;
-  --color-brand-border: #333333;
-  --color-silver: #C0C0C0;
-  --color-silver-light: #E0E0E0;
-  
-  --font-sans: "Inter", sans-serif;
-  --font-heading: "Oswald", sans-serif;
+  --font-heading: "Outfit", sans-serif;
+  --font-body: "Instrument Sans", sans-serif;
+
+  --color-brand-dark: #000000;
+  --color-brand-card: #121212;
+  --color-brand-gold: #B8860B;
+  --color-brand-goldLight: #FFD700;
+  --color-brand-silver: #C0C0C0;
+  --color-brand-silverLight: #E8E8E8;
+  --color-brand-border: #2A2A2A;
+
+  --background-image-gold-gradient: linear-gradient(to right, #B8860B, #FFD700);
+  --background-image-gold-gradient-hover: linear-gradient(to right, #FFD700, #B8860B);
 }
 
 @layer base {
   body {
-    background-color: #0A0A0A;
-    color: #C0C0C0;
+    background-color: #000000;
+    color: #E8E8E8;
   }
 }
 
 html {
   scroll-behavior: smooth;
+}
+
+/* Custom styles for elements that need specific overrides */
+.text-gradient-gold {
+  background: linear-gradient(to right, #B8860B, #FFD700);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.section-title-line {
+  display: flex;
+  align-items: center;
+  text-align: center;
+}
+.section-title-line::before,
+.section-title-line::after {
+  content: '';
+  flex: 1;
+  border-bottom: 1px solid #2A2A2A;
+}
+.section-title-line:not(:empty)::before {
+  margin-right: 1.5em;
+}
+.section-title-line:not(:empty)::after {
+  margin-left: 1.5em;
+}
+
+/* Custom Scrollbar for a premium feel */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #000000; 
+}
+::-webkit-scrollbar-thumb {
+  background: #2A2A2A; 
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #B8860B; 
 }

@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MG Music Studio | Produção de Excelência</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400..700;1,400..700&family=Outfit:wght@100..900&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        heading: ['Outfit', 'sans-serif'],
+                        body: ['Instrument Sans', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            dark: '#000000',
+                            card: '#121212',
+                            gold: '#B8860B',
+                            goldLight: '#FFD700',
+                            silver: '#C0C0C0',
+                            silverLight: '#E8E8E8',
+                            border: '#2A2A2A'
+                        }
+                    },
+                    backgroundImage: {
+                        'gold-gradient': 'linear-gradient(to right, #B8860B, #FFD700)',
+                        'gold-gradient-hover': 'linear-gradient(to right, #FFD700, #B8860B)',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Custom styles for elements that need specific overrides */
+        body {
+            background-color: #000000;
+            color: #E8E8E8;
+        }
+        .text-gradient-gold {
+            background: linear-gradient(to right, #B8860B, #FFD700);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .section-title-line {
+            display: flex;
+            align-items: center;
+            text-align: center;
+        }
+        .section-title-line::before,
+        .section-title-line::after {
+            content: '';
+            flex: 1;
+            border-bottom: 1px solid #2A2A2A;
+        }
+        .section-title-line:not(:empty)::before {
+            margin-right: 1.5em;
+        }
+        .section-title-line:not(:empty)::after {
+            margin-left: 1.5em;
+        }
+        
+        /* Custom Scrollbar for a premium feel */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #000000; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #2A2A2A; 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #B8860B; 
+        }
+    </style>
+</head>
+<body class="font-body antialiased selection:bg-brand-gold selection:text-black">
+
+    <nav class="fixed w-full z-50 top-0 transition-all duration-300 bg-black/90 backdrop-blur-md border-b border-brand-border" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 md:px-8 lg:px-12 h-20 flex items-center justify-between">
+            <!-- Logo -->
+            <a href="#" class="flex items-center gap-2">
+                <img src="Gemini_Generated_Image_jz75rejz75rejz75.png" alt="MG Music Studio Logo" class="h-12 w-auto object-contain">
+            </a>
+
+            <!-- Desktop Menu -->
+            <div class="hidden md:flex items-center gap-8 text-sm tracking-wider font-heading font-medium text-brand-silverLight">
+                <a href="#home" class="hover:text-brand-gold transition-colors duration-200">HOME</a>
+                <a href="#produtora" class="hover:text-brand-gold transition-colors duration-200">A PRODUTORA</a>
+                <a href="#servicos" class="hover:text-brand-gold transition-colors duration-200">SERVIÇOS</a>
+                <a href="#portfolio" class="hover:text-brand-gold transition-colors duration-200">PORTFÓLIO</a>
+                <a href="#contato" class="hover:text-brand-gold transition-colors duration-200">CONTATO</a>
+            </div>
+
+            <!-- CTA Button -->
+            <div class="hidden md:block">
+                <a href="https://wa.me/5542991534011" target="_blank" class="font-heading text-sm font-bold text-black bg-gold-gradient hover:bg-gold-gradient-hover px-6 py-2.5 rounded-md transition-all duration-300 shadow-[0_0_15px_rgba(184,134,11,0.3)] hover:shadow-[0_0_25px_rgba(255,215,0,0.5)]">
+                    AGENDAR ORÇAMENTO
+                </a>
+            </div>
+
+            <!-- Mobile Menu Button -->
+            <button class="md:hidden text-brand-gold text-3xl focus:outline-none" id="mobile-menu-btn">
+                <i class="ph ph-list"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Menu Panel -->
+        <div class="md:hidden hidden bg-brand-card absolute w-full border-b border-brand-border" id="mobile-menu">
+            <div class="px-4 pt-2 pb-6 space-y-2 font-heading text-center">
+                <a href="#home" class="block px-3 py-3 hover:text-brand-gold border-b border-brand-border/50">HOME</a>
+                <a href="#produtora" class="block px-3 py-3 hover:text-brand-gold border-b border-brand-border/50">A PRODUTORA</a>
+                <a href="#servicos" class="block px-3 py-3 hover:text-brand-gold border-b border-brand-border/50">SERVIÇOS</a>
+                <a href="#portfolio" class="block px-3 py-3 hover:text-brand-gold border-b border-brand-border/50">PORTFÓLIO</a>
+                <a href="#contato" class="block px-3 py-3 hover:text-brand-gold mb-4">CONTATO</a>
+                <a href="https://wa.me/5542991534011" class="inline-block font-heading text-sm font-bold text-black bg-gold-gradient px-6 py-3 rounded-md w-full">AGENDAR ORÇAMENTO</a>
+            </div>
+        </div>
+    </nav>
+
+    <section id="home" class="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden">
+        <!-- Background Image with Overlay -->
+        <div class="absolute inset-0 z-0">
+            <img src="https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?q=80&w=2070&auto=format&fit=crop" alt="Music Studio Background" class="w-full h-full object-cover opacity-40">
+            <div class="absolute inset-0 bg-gradient-to-b from-black/80 via-black/60 to-black"></div>
+        </div>
+
+        <div class="relative z-10 max-w-5xl mx-auto px-4 text-center">
+            <h1 class="font-heading text-4xl md:text-6xl lg:text-7xl font-bold leading-tight mb-6 tracking-tight text-white drop-shadow-lg">
+                MG MUSIC STUDIO: PRODUÇÃO DE<br>
+                <span class="text-gradient-gold">EXCELÊNCIA E ALTA CONVERSÃO.</span>
+            </h1>
+            <p class="font-body text-brand-silver text-lg md:text-xl max-w-3xl mx-auto mb-10 leading-relaxed">
+                Junte-se aos mais de 100 milhões de ouvintes impactados pelas produções do MG Music Studio. Qualidade técnica impecável e visão artística que transforma.
+            </p>
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                <a href="https://wa.me/5542991534011" target="_blank" class="font-heading font-bold text-black bg-gold-gradient px-8 py-4 rounded-md transition-all duration-300 shadow-[0_0_20px_rgba(184,134,11,0.4)] hover:shadow-[0_0_30px_rgba(255,215,0,0.6)] hover:-translate-y-1 w-full sm:w-auto">
+                    SOLICITAR ORÇAMENTO<br>
+                    <span class="text-xs font-medium opacity-80">(42) 99153-4011</span>
+                </a>
+                <a href="#portfolio" class="font-heading font-bold text-brand-silverLight bg-transparent border-2 border-brand-gold px-8 py-4 rounded-md transition-all duration-300 hover:bg-brand-gold/10 hover:-translate-y-1 w-full sm:w-auto flex items-center justify-center h-[60px]">
+                    VER PORTFÓLIO
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section id="produtora" class="py-16 bg-black relative z-10 border-b border-brand-border/30">
+        <div class="max-w-6xl mx-auto px-4">
+            <h2 class="font-heading text-sm text-brand-silver tracking-[0.3em] uppercase section-title-line mb-12">PROVA SOCIAL</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center divide-y md:divide-y-0 md:divide-x divide-brand-border/50">
+                <div class="p-4 transform hover:scale-105 transition-transform duration-300">
+                    <h3 class="font-heading text-5xl md:text-6xl font-bold text-brand-gold mb-2 drop-shadow-md">100M+</h3>
+                    <p class="font-body text-brand-silver uppercase tracking-wider text-sm font-semibold">OUVINTES IMPACTADOS</p>
+                </div>
+                <div class="p-4 pt-8 md:pt-4 transform hover:scale-105 transition-transform duration-300">
+                    <h3 class="font-heading text-5xl md:text-6xl font-bold text-brand-gold mb-2 drop-shadow-md">300+</h3>
+                    <p class="font-body text-brand-silver uppercase tracking-wider text-sm font-semibold">PROJETOS REALIZADOS</p>
+                </div>
+                <div class="p-4 pt-8 md:pt-4 transform hover:scale-105 transition-transform duration-300">
+                    <h3 class="font-heading text-5xl md:text-6xl font-bold text-brand-gold mb-2 drop-shadow-md">50+</h3>
+                    <p class="font-body text-brand-silver uppercase tracking-wider text-sm font-semibold">ARTISTAS DE REFERÊNCIA</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="servicos" class="py-24 bg-black relative z-10">
+        <div class="max-w-7xl mx-auto px-4 md:px-8">
+            <h2 class="font-heading text-sm text-brand-silver tracking-[0.3em] uppercase section-title-line mb-16">SERVIÇOS</h2>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Service 1 -->
+                <div class="bg-brand-card border border-brand-border rounded-xl p-8 text-center group hover:border-brand-gold transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_10px_30px_-10px_rgba(184,134,11,0.2)] flex flex-col items-center justify-center min-h-[220px]">
+                    <div class="w-16 h-16 rounded-full bg-brand-gold/10 flex items-center justify-center mb-6 group-hover:bg-brand-gold/20 transition-colors duration-300">
+                        <i class="ph ph-waves text-3xl text-brand-gold"></i>
+                    </div>
+                    <h3 class="font-heading font-bold text-lg text-brand-silverLight uppercase tracking-wide leading-snug">GRAVAÇÃO &<br>MASTERIZAÇÃO</h3>
+                </div>
+
+                <!-- Service 2 -->
+                <div class="bg-brand-card border border-brand-border rounded-xl p-8 text-center group hover:border-brand-gold transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_10px_30px_-10px_rgba(184,134,11,0.2)] flex flex-col items-center justify-center min-h-[220px]">
+                    <div class="w-16 h-16 rounded-full bg-brand-gold/10 flex items-center justify-center mb-6 group-hover:bg-brand-gold/20 transition-colors duration-300">
+                        <i class="ph ph-music-notes text-3xl text-brand-gold"></i>
+                    </div>
+                    <h3 class="font-heading font-bold text-lg text-brand-silverLight uppercase tracking-wide leading-snug">PRODUÇÃO MUSICAL<br>COMPLETA</h3>
+                </div>
+
+                <!-- Service 3 -->
+                <div class="bg-brand-card border border-brand-border rounded-xl p-8 text-center group hover:border-brand-gold transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_10px_30px_-10px_rgba(184,134,11,0.2)] flex flex-col items-center justify-center min-h-[220px]">
+                    <div class="w-16 h-16 rounded-full bg-brand-gold/10 flex items-center justify-center mb-6 group-hover:bg-brand-gold/20 transition-colors duration-300">
+                        <i class="ph ph-video-camera text-3xl text-brand-gold"></i>
+                    </div>
+                    <h3 class="font-heading font-bold text-lg text-brand-silverLight uppercase tracking-wide leading-snug">EDIÇÃO DE ÁUDIO<br>E VÍDEO</h3>
+                </div>
+
+                <!-- Service 4 -->
+                <div class="bg-brand-card border border-brand-border rounded-xl p-8 text-center group hover:border-brand-gold transition-all duration-300 hover:-translate-y-2 hover:shadow-[0_10px_30px_-10px_rgba(184,134,11,0.2)] flex flex-col items-center justify-center min-h-[220px]">
+                    <div class="w-16 h-16 rounded-full bg-brand-gold/10 flex items-center justify-center mb-6 group-hover:bg-brand-gold/20 transition-colors duration-300">
+                        <i class="ph ph-microphone-stage text-3xl text-brand-gold"></i>
+                    </div>
+                    <h3 class="font-heading font-bold text-lg text-brand-silverLight uppercase tracking-wide leading-snug">ESPAÇO PARA<br>PODCAST</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="portfolio" class="py-20 bg-black relative z-10 border-t border-brand-border/30">
+        <div class="max-w-7xl mx-auto px-4 md:px-8">
+            <h2 class="font-heading text-sm text-brand-silver tracking-[0.3em] uppercase section-title-line mb-16">PORTFÓLIO</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Portfolio Item 1 -->
+                <div class="group relative rounded-xl overflow-hidden aspect-video cursor-pointer border border-brand-border hover:border-brand-gold transition-colors duration-300">
+                    <img src="https://images.unsplash.com/photo-1516280440503-6c9fa5ce0170?q=80&w=800&auto=format&fit=crop" alt="Giselli Cristina - Clipe Oficial" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                    <div class="absolute inset-0 bg-black/60 group-hover:bg-black/40 transition-colors duration-300"></div>
+                    <div class="absolute inset-0 flex items-center justify-center">
+                        <div class="w-14 h-14 rounded-full bg-brand-gold flex items-center justify-center text-black shadow-lg transform group-hover:scale-110 transition-transform duration-300">
+                            <i class="ph-fill ph-play text-2xl ml-1"></i>
+                        </div>
+                    </div>
+                    <div class="absolute bottom-0 left-0 w-full p-4 bg-gradient-to-t from-black to-transparent">
+                        <p class="font-body text-sm text-brand-silverLight font-medium">Giselli Cristina - Clipe Oficial</p>
+                    </div>
+                </div>
+
+                <!-- Portfolio Item 2 -->
+                <div class="group relative rounded-xl overflow-hidden aspect-video cursor-pointer border border-brand-border hover:border-brand-gold transition-colors duration-300">
+                    <img src="https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?q=80&w=800&auto=format&fit=crop" alt="Moisés Cleyton - Produção" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                    <div class="absolute inset-0 bg-black/60 group-hover:bg-black/40 transition-colors duration-300"></div>
+                    <div class="absolute inset-0 flex items-center justify-center">
+                        <div class="w-14 h-14 rounded-full bg-brand-gold flex items-center justify-center text-black shadow-lg transform group-hover:scale-110 transition-transform duration-300">
+                            <i class="ph-fill ph-play text-2xl ml-1"></i>
+                        </div>
+                    </div>
+                    <div class="absolute bottom-0 left-0 w-full p-4 bg-gradient-to-t from-black to-transparent">
+                        <p class="font-body text-sm text-brand-silverLight font-medium">Moisés Cleyton - Produção</p>
+                    </div>
+                </div>
+
+                <!-- Portfolio Item 3 -->
+                <div class="group relative rounded-xl overflow-hidden aspect-video cursor-pointer border border-brand-border hover:border-brand-gold transition-colors duration-300">
+                    <img src="https://images.unsplash.com/photo-1598653222000-6b7b7a552625?q=80&w=800&auto=format&fit=crop" alt="Moisés Cleyton - Produção" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                    <div class="absolute inset-0 bg-black/60 group-hover:bg-black/40 transition-colors duration-300"></div>
+                    <div class="absolute inset-0 flex items-center justify-center">
+                        <div class="w-14 h-14 rounded-full bg-brand-gold flex items-center justify-center text-black shadow-lg transform group-hover:scale-110 transition-transform duration-300">
+                            <i class="ph-fill ph-play text-2xl ml-1"></i>
+                        </div>
+                    </div>
+                    <div class="absolute bottom-0 left-0 w-full p-4 bg-gradient-to-t from-black to-transparent">
+                        <p class="font-body text-sm text-brand-silverLight font-medium">Moisés Cleyton - Produção</p>
+                    </div>
+                </div>
+
+                <!-- Portfolio Item 4 -->
+                <div class="group relative rounded-xl overflow-hidden aspect-video cursor-pointer border border-brand-border hover:border-brand-gold transition-colors duration-300">
+                    <img src="https://images.unsplash.com/photo-1525362081669-2b476bb628c3?q=80&w=800&auto=format&fit=crop" alt="Milene de Cassia - Produção" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                    <div class="absolute inset-0 bg-black/60 group-hover:bg-black/40 transition-colors duration-300"></div>
+                    <div class="absolute inset-0 flex items-center justify-center">
+                        <div class="w-14 h-14 rounded-full bg-brand-gold flex items-center justify-center text-black shadow-lg transform group-hover:scale-110 transition-transform duration-300">
+                            <i class="ph-fill ph-play text-2xl ml-1"></i>
+                        </div>
+                    </div>
+                    <div class="absolute bottom-0 left-0 w-full p-4 bg-gradient-to-t from-black to-transparent">
+                        <p class="font-body text-sm text-brand-silverLight font-medium">Gravação de Studio - Ao Vivo</p>
+                    </div>
+                </div>
+
+                <!-- Portfolio Item 5 -->
+                <div class="group relative rounded-xl overflow-hidden aspect-video cursor-pointer border border-brand-border hover:border-brand-gold transition-colors duration-300">
+                    <img src="https://images.unsplash.com/photo-1520625907400-032230a17409?q=80&w=800&auto=format&fit=crop" alt="Hudson Almeida - Produção" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                    <div class="absolute inset-0 bg-black/60 group-hover:bg-black/40 transition-colors duration-300"></div>
+                    <div class="absolute inset-0 flex items-center justify-center">
+                        <div class="w-14 h-14 rounded-full bg-brand-gold flex items-center justify-center text-black shadow-lg transform group-hover:scale-110 transition-transform duration-300">
+                            <i class="ph-fill ph-play text-2xl ml-1"></i>
+                        </div>
+                    </div>
+                    <div class="absolute bottom-0 left-0 w-full p-4 bg-gradient-to-t from-black to-transparent">
+                        <p class="font-body text-sm text-brand-silverLight font-medium">Hudson Almeida - Clipe Oficial</p>
+                    </div>
+                </div>
+
+                <!-- Portfolio Item 6 -->
+                <div class="group relative rounded-xl overflow-hidden aspect-video cursor-pointer border border-brand-border hover:border-brand-gold transition-colors duration-300">
+                    <img src="https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?q=80&w=800&auto=format&fit=crop" alt="Podcast Studio" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                    <div class="absolute inset-0 bg-black/60 group-hover:bg-black/40 transition-colors duration-300"></div>
+                    <div class="absolute inset-0 flex items-center justify-center">
+                        <div class="w-14 h-14 rounded-full bg-brand-gold flex items-center justify-center text-black shadow-lg transform group-hover:scale-110 transition-transform duration-300">
+                            <i class="ph-fill ph-play text-2xl ml-1"></i>
+                        </div>
+                    </div>
+                    <div class="absolute bottom-0 left-0 w-full p-4 bg-gradient-to-t from-black to-transparent">
+                        <p class="font-body text-sm text-brand-silverLight font-medium">Edição para Videocast</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-12">
+                <a href="#" class="inline-flex items-center gap-2 font-heading font-semibold text-brand-gold hover:text-brand-goldLight transition-colors">
+                    Ver canal no YouTube <i class="ph ph-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section id="contato" class="py-24 bg-brand-card relative z-10 border-t border-brand-border/30">
+        <div class="max-w-7xl mx-auto px-4 md:px-8">
+            <h2 class="font-heading text-sm text-brand-silver tracking-[0.3em] uppercase section-title-line mb-16">CONTATO</h2>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20">
+                <!-- Form -->
+                <div class="bg-black/50 p-8 rounded-xl border border-brand-border shadow-lg">
+                    <h3 class="font-heading text-2xl text-white mb-6">Solicite um Orçamento</h3>
+                    <form class="space-y-4">
+                        <div>
+                            <input type="text" placeholder="Nome" class="w-full bg-brand-card border border-brand-border rounded-md px-4 py-3 text-brand-silverLight focus:outline-none focus:border-brand-gold focus:ring-1 focus:ring-brand-gold transition-all font-body">
+                        </div>
+                        <div>
+                            <input type="email" placeholder="Email" class="w-full bg-brand-card border border-brand-border rounded-md px-4 py-3 text-brand-silverLight focus:outline-none focus:border-brand-gold focus:ring-1 focus:ring-brand-gold transition-all font-body">
+                        </div>
+                        <div>
+                            <textarea rows="4" placeholder="Mensagem / Descreva seu projeto" class="w-full bg-brand-card border border-brand-border rounded-md px-4 py-3 text-brand-silverLight focus:outline-none focus:border-brand-gold focus:ring-1 focus:ring-brand-gold transition-all font-body resize-none"></textarea>
+                        </div>
+                        <button type="button" class="w-full font-heading font-bold text-black bg-gold-gradient px-8 py-3 rounded-md transition-all duration-300 hover:shadow-[0_0_20px_rgba(255,215,0,0.4)] hover:brightness-110 mt-2 uppercase tracking-wide">
+                            Enviar Mensagem
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Info & Map Placeholder -->
+                <div class="flex flex-col justify-between">
+                    <div class="bg-brand-border/20 rounded-xl border border-brand-border p-2 mb-8 h-64 lg:h-auto lg:flex-1 relative overflow-hidden group">
+                        <!-- Simulated Map -->
+                        <div class="absolute inset-0 bg-[#e5e3df] opacity-80 mix-blend-luminosity grayscale group-hover:grayscale-0 transition-all duration-500">
+                             <img src="https://images.unsplash.com/photo-1524661135-423995f22d0b?q=80&w=800&auto=format&fit=crop" class="w-full h-full object-cover opacity-30" alt="Map Texture">
+                        </div>
+                        <div class="absolute inset-0 flex flex-col items-center justify-center">
+                            <i class="ph-fill ph-map-pin text-4xl text-brand-dark drop-shadow-md mb-2"></i>
+                            <div class="bg-white px-3 py-1 rounded shadow-md text-brand-dark font-heading text-sm font-bold">
+                                Telêmaco Borba - PR
+                            </div>
+                        </div>
+                        
+                        <!-- Map Controls Simulation -->
+                        <div class="absolute bottom-4 right-4 flex flex-col gap-1">
+                            <div class="w-8 h-8 bg-white rounded shadow flex items-center justify-center text-black cursor-pointer hover:bg-gray-100"><i class="ph ph-plus"></i></div>
+                            <div class="w-8 h-8 bg-white rounded shadow flex items-center justify-center text-black cursor-pointer hover:bg-gray-100"><i class="ph ph-minus"></i></div>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 text-brand-silver font-body text-sm">
+                        <div class="flex gap-3">
+                            <i class="ph ph-buildings text-xl text-brand-gold mt-1"></i>
+                            <div>
+                                <p class="font-bold text-white mb-1">MG Music Studio</p>
+                                <p>CNPJ 31.865.270/0001-99</p>
+                                <p>Resp: Gesiel Jasson de Oliveira</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-3">
+                            <i class="ph ph-map-pin text-xl text-brand-gold mt-1"></i>
+                            <div>
+                                <p>Rua dos Curiós, 25</p>
+                                <p>São João</p>
+                                <p>Telêmaco Borba - PR</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-3 sm:col-span-2">
+                            <i class="ph ph-whatsapp-logo text-xl text-brand-gold mt-1"></i>
+                            <div>
+                                <a href="https://wa.me/5542991534011" target="_blank" class="font-bold text-white hover:text-brand-gold transition-colors text-lg">(42) 99153-4011</a>
+                                <p class="text-xs">Atendimento via WhatsApp</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-black py-12 border-t border-brand-border">
+        <div class="max-w-7xl mx-auto px-4 md:px-8 flex flex-col md:flex-row items-center justify-between gap-6">
+            <div class="flex items-center gap-2">
+                <img src="Gemini_Generated_Image_jz75rejz75rejz75.png" alt="MG Music Studio Logo" class="h-10 w-auto object-contain grayscale hover:grayscale-0 transition-all duration-500">
+            </div>
+            
+            <p class="font-body text-brand-silver text-xs text-center md:text-left">
+                &copy; 2026 MG Music Studio. Todos os direitos reservados.
+            </p>
+
+            <div class="flex gap-4">
+                <a href="#" class="w-10 h-10 rounded-full border border-brand-border flex items-center justify-center text-brand-silver hover:text-brand-gold hover:border-brand-gold transition-colors duration-300">
+                    <i class="ph ph-instagram-logo text-xl"></i>
+                </a>
+                <a href="#" class="w-10 h-10 rounded-full border border-brand-border flex items-center justify-center text-brand-silver hover:text-brand-gold hover:border-brand-gold transition-colors duration-300">
+                    <i class="ph ph-facebook-logo text-xl"></i>
+                </a>
+                <a href="#" class="w-10 h-10 rounded-full border border-brand-border flex items-center justify-center text-brand-silver hover:text-brand-gold hover:border-brand-gold transition-colors duration-300">
+                    <i class="ph ph-youtube-logo text-xl"></i>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+        const navbar = document.getElementById('navbar');
+
+        btn.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+        });
+
+        // Close mobile menu on link click
+        menu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                menu.classList.add('hidden');
+            });
+        });
+
+        // Navbar blur effect on scroll
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 20) {
+                navbar.classList.add('shadow-lg');
+                navbar.classList.replace('bg-black/90', 'bg-black/95');
+            } else {
+                navbar.classList.remove('shadow-lg');
+                navbar.classList.replace('bg-black/95', 'bg-black/90');
+            }
+        });
+    </script>
+</body>
+</html>
