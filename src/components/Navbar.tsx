@@ -18,9 +18,9 @@ export default function Navbar() {
 
   return (
     <nav className={`fixed w-full z-50 top-0 transition-all duration-300 border-b border-brand-border ${scrolled ? 'bg-black/95 shadow-lg' : 'bg-black/90 backdrop-blur-md'}`} id="navbar">
-      <div className="max-w-7xl mx-auto px-4 md:px-8 lg:px-12 h-20 flex items-center justify-between">
+      <div className="max-w-7xl mx-auto px-4 md:px-8 lg:px-12 h-24 md:h-28 flex items-center justify-between">
         <a href="#" className="flex items-center gap-2">
-          <img src="/logo.png" alt="MG Music Studio Logo" className="h-12 w-auto object-contain" />
+          <img src="/logo.png" alt="MG Music Studio Logo" className="h-16 md:h-24 w-auto object-contain" />
         </a>
 
         <div className="hidden md:flex items-center gap-8 text-sm tracking-wider font-heading font-medium text-brand-silverLight">
