@@ -1,7 +1,19 @@
+import Hero from '@/components/Hero'
+import Stats from '@/components/Stats'
+import Portfolio from '@/components/Portfolio'
+import Contact from '@/components/Contact'
+import Footer from '@/components/Footer'
+
 export default function Home() {
   return (
-    <div className="min-h-screen bg-[#0A0A0A] text-[#C0C0C0]">
-      <h1 className="text-4xl text-[#FFD700] p-8">MG Music Studio</h1>
+    <div className="min-h-screen bg-[#0A0A0A] text-[#C0C0C0] font-sans">
+      <main>
+        <Hero />
+        <Stats />
+        <Portfolio />
+        <Contact />
+      </main>
+      <Footer />
     </div>
   )
 }
