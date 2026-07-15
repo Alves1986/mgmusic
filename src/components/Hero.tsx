@@ -1,4 +1,25 @@
+import { useEffect, useState } from 'react'
+import { supabase } from '@/lib/supabase'
+
 export default function Hero() {
+  const [content, setContent] = useState({
+    title: 'Transformando Ideias em Obras-Primas',
+    subtitle: 'Gravadora e produtora musical especializada em elevar o nível da sua música. Do primeiro acorde à masterização final, damos vida à sua visão com excelência e paixão.'
+  })
+
+  useEffect(() => {
+    supabase.from('site_settings').select('*').in('key', ['hero_title', 'hero_subtitle']).then(({ data }) => {
+      if (data && data.length > 0) {
+        const map: Record<string, string> = {}
+        data.forEach(s => map[s.key] = s.value)
+        setContent(prev => ({
+          title: map['hero_title'] || prev.title,
+          subtitle: map['hero_subtitle'] || prev.subtitle
+        }))
+      }
+    })
+  }, [])
+
   return (
     <section id="home" className="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden">
         <div className="absolute inset-0 z-0">
@@ -7,12 +28,12 @@ export default function Hero() {
         </div>
 
         <div className="relative z-10 max-w-5xl mx-auto px-4 text-center">
-            <h1 className="font-heading text-4xl md:text-6xl lg:text-7xl font-bold leading-tight mb-6 tracking-tight text-white drop-shadow-lg">
-                MG MUSIC STUDIO: PRODUÇÃO DE<br />
-                <span className="text-gradient-gold">EXCELÊNCIA E ALTA CONVERSÃO.</span>
+            <h1 className="font-heading text-4xl md:text-6xl lg:text-7xl font-black text-white leading-tight mb-6 tracking-tight">
+                {content.title}
             </h1>
-            <p className="font-body text-brand-silver text-lg md:text-xl max-w-3xl mx-auto mb-10 leading-relaxed">
-                Junte-se aos mais de 100 milhões de ouvintes impactados pelas produções do MG Music Studio. Qualidade técnica impecável e visão artística que transforma.
+            
+            <p className="font-body text-lg md:text-xl text-brand-silverLight mb-10 max-w-2xl mx-auto">
+                {content.subtitle}
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
                 <a href="https://wa.me/5542991534011" target="_blank" rel="noopener noreferrer" className="font-heading font-bold text-black bg-gold-gradient px-8 py-4 rounded-md transition-all duration-300 shadow-[0_0_20px_rgba(184,134,11,0.4)] hover:shadow-[0_0_30px_rgba(255,215,0,0.6)] hover:-translate-y-1 w-full sm:w-auto">

@@ -8,9 +8,19 @@ export default function Contact() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setStatus('loading')
-    const { error } = await supabase.from('leads').insert([form])
     
+    const { error } = await supabase.from('leads').insert([
+      { 
+        name: form.name, 
+        email: form.email, 
+        message: form.message,
+        service_interest: 'Geral', // Can be expanded later
+        status: 'Novo'
+      }
+    ])
+
     if (error) {
+      console.error(error)
       setStatus('error')
     } else {
       setStatus('success')

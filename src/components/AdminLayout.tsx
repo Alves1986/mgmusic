@@ -35,6 +35,12 @@ export default function AdminLayout() {
                 <i className="ph ph-squares-four mr-2"></i> Dashboard
             </Link>
             <Link 
+                to="/admin/crm" 
+                className={`block px-4 py-3 rounded-md transition-colors font-heading ${isActive('/admin/crm') ? 'bg-brand-gold/10 text-brand-gold font-bold' : 'hover:bg-brand-border/50 hover:text-white'}`}
+            >
+                <i className="ph ph-users mr-2"></i> CRM (Leads)
+            </Link>
+            <Link 
                 to="/admin/portfolio" 
                 className={`block px-4 py-3 rounded-md transition-colors font-heading ${isActive('/admin/portfolio') ? 'bg-brand-gold/10 text-brand-gold font-bold' : 'hover:bg-brand-border/50 hover:text-white'}`}
             >
