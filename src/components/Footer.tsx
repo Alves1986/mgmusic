@@ -3,7 +3,7 @@ export default function Footer() {
     <footer className="bg-black py-12 border-t border-brand-border">
         <div className="max-w-7xl mx-auto px-4 md:px-8 flex flex-col md:flex-row items-center justify-between gap-6">
             <div className="flex items-center gap-2">
-                <span className="font-heading font-bold text-brand-gold text-lg uppercase tracking-widest grayscale hover:grayscale-0 transition-all duration-500">MG Music Studio</span>
+                <img src="/logo.png" alt="MG Music Studio Logo" className="h-10 w-auto object-contain grayscale hover:grayscale-0 transition-all duration-500" />
             </div>
             
             <p className="font-body text-brand-silver text-xs text-center md:text-left">

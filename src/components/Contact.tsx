@@ -43,7 +43,7 @@ export default function Contact() {
                         <div>
                             <textarea rows={4} placeholder="Mensagem / Descreva seu projeto" required value={form.message} onChange={e => setForm({...form, message: e.target.value})} className="w-full bg-brand-card border border-brand-border rounded-md px-4 py-3 text-brand-silverLight focus:outline-none focus:border-brand-gold focus:ring-1 focus:ring-brand-gold transition-all font-body resize-none"></textarea>
                         </div>
-                        <button type="submit" disabled={status === 'loading'} className="w-full font-heading font-bold text-black bg-[var(--background-image-gold-gradient)] hover:bg-[var(--background-image-gold-gradient-hover)] px-8 py-3 rounded-md transition-all duration-300 hover:shadow-[0_0_20px_rgba(255,215,0,0.4)] hover:brightness-110 mt-2 uppercase tracking-wide disabled:opacity-50">
+                        <button type="submit" disabled={status === 'loading'} className="w-full font-heading font-bold text-black bg-gold-gradient hover:bg-gold-gradient-hover px-8 py-3 rounded-md transition-all duration-300 hover:shadow-[0_0_20px_rgba(255,215,0,0.4)] hover:brightness-110 mt-2 uppercase tracking-wide disabled:opacity-50">
                             {status === 'loading' ? 'Enviando...' : 'Enviar Mensagem'}
                         </button>
                         {status === 'error' && <p className="text-red-500 text-sm mt-2">Ocorreu um erro. Tente novamente.</p>}

@@ -15,7 +15,7 @@ export default function Hero() {
                 Junte-se aos mais de 100 milhões de ouvintes impactados pelas produções do MG Music Studio. Qualidade técnica impecável e visão artística que transforma.
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-                <a href="https://wa.me/5542991534011" target="_blank" rel="noopener noreferrer" className="font-heading font-bold text-black bg-[var(--background-image-gold-gradient)] px-8 py-4 rounded-md transition-all duration-300 shadow-[0_0_20px_rgba(184,134,11,0.4)] hover:shadow-[0_0_30px_rgba(255,215,0,0.6)] hover:-translate-y-1 w-full sm:w-auto">
+                <a href="https://wa.me/5542991534011" target="_blank" rel="noopener noreferrer" className="font-heading font-bold text-black bg-gold-gradient px-8 py-4 rounded-md transition-all duration-300 shadow-[0_0_20px_rgba(184,134,11,0.4)] hover:shadow-[0_0_30px_rgba(255,215,0,0.6)] hover:-translate-y-1 w-full sm:w-auto">
                     SOLICITAR ORÇAMENTO<br />
                     <span className="text-xs font-medium opacity-80">(42) 99153-4011</span>
                 </a>

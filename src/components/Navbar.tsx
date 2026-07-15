@@ -20,7 +20,7 @@ export default function Navbar() {
     <nav className={`fixed w-full z-50 top-0 transition-all duration-300 border-b border-brand-border ${scrolled ? 'bg-black/95 shadow-lg' : 'bg-black/90 backdrop-blur-md'}`} id="navbar">
       <div className="max-w-7xl mx-auto px-4 md:px-8 lg:px-12 h-20 flex items-center justify-between">
         <a href="#" className="flex items-center gap-2">
-          <span className="font-heading font-bold text-xl text-brand-gold tracking-widest uppercase">MG Music</span>
+          <img src="/logo.png" alt="MG Music Studio Logo" className="h-12 w-auto object-contain" />
         </a>
 
         <div className="hidden md:flex items-center gap-8 text-sm tracking-wider font-heading font-medium text-brand-silverLight">
@@ -32,7 +32,7 @@ export default function Navbar() {
         </div>
 
         <div className="hidden md:block">
-          <a href="https://wa.me/5542991534011" target="_blank" rel="noopener noreferrer" className="font-heading text-sm font-bold text-black bg-[var(--background-image-gold-gradient)] hover:bg-[var(--background-image-gold-gradient-hover)] px-6 py-2.5 rounded-md transition-all duration-300 shadow-[0_0_15px_rgba(184,134,11,0.3)] hover:shadow-[0_0_25px_rgba(255,215,0,0.5)]">
+          <a href="https://wa.me/5542991534011" target="_blank" rel="noopener noreferrer" className="font-heading text-sm font-bold text-black bg-gold-gradient hover:bg-gold-gradient-hover px-6 py-2.5 rounded-md transition-all duration-300 shadow-[0_0_15px_rgba(184,134,11,0.3)] hover:shadow-[0_0_25px_rgba(255,215,0,0.5)]">
             AGENDAR ORÇAMENTO
           </a>
         </div>
@@ -50,7 +50,7 @@ export default function Navbar() {
             <a href="#servicos" onClick={() => setIsOpen(false)} className="block px-3 py-3 hover:text-brand-gold border-b border-brand-border/50">SERVIÇOS</a>
             <a href="#portfolio" onClick={() => setIsOpen(false)} className="block px-3 py-3 hover:text-brand-gold border-b border-brand-border/50">PORTFÓLIO</a>
             <a href="#contato" onClick={() => setIsOpen(false)} className="block px-3 py-3 hover:text-brand-gold mb-4">CONTATO</a>
-            <a href="https://wa.me/5542991534011" target="_blank" rel="noopener noreferrer" className="inline-block font-heading text-sm font-bold text-black bg-[var(--background-image-gold-gradient)] px-6 py-3 rounded-md w-full">AGENDAR ORÇAMENTO</a>
+            <a href="https://wa.me/5542991534011" target="_blank" rel="noopener noreferrer" className="inline-block font-heading text-sm font-bold text-black bg-gold-gradient px-6 py-3 rounded-md w-full">AGENDAR ORÇAMENTO</a>
           </div>
         </div>
       )}
