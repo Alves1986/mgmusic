@@ -1,10 +1,16 @@
 import { useState, useEffect } from 'react'
+import { supabase } from '@/lib/supabase'
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
+  const [whatsapp, setWhatsapp] = useState('11999999999')
 
   useEffect(() => {
+    supabase.from('site_settings').select('value').eq('key', 'contact_whatsapp').single().then(({ data }) => {
+      if (data) setWhatsapp(data.value)
+    })
+
     const handleScroll = () => {
       if (window.scrollY > 20) {
         setScrolled(true)
@@ -32,7 +38,7 @@ export default function Navbar() {
         </div>
 
         <div className="hidden md:block">
-          <a href="https://wa.me/5542991534011" target="_blank" rel="noopener noreferrer" className="font-heading text-sm font-bold text-black bg-gold-gradient hover:bg-gold-gradient-hover px-6 py-2.5 rounded-md transition-all duration-300 shadow-[0_0_15px_rgba(184,134,11,0.3)] hover:shadow-[0_0_25px_rgba(255,215,0,0.5)]">
+          <a href={`https://wa.me/55${whatsapp.replace(/\D/g, '')}`} target="_blank" rel="noopener noreferrer" className="font-heading text-sm font-bold text-black bg-gold-gradient hover:bg-gold-gradient-hover px-6 py-2.5 rounded-md transition-all duration-300 shadow-[0_0_15px_rgba(184,134,11,0.3)] hover:shadow-[0_0_25px_rgba(255,215,0,0.5)]">
             AGENDAR ORÇAMENTO
           </a>
         </div>
@@ -50,7 +56,7 @@ export default function Navbar() {
             <a href="#servicos" onClick={() => setIsOpen(false)} className="block px-3 py-3 hover:text-brand-gold border-b border-brand-border/50">SERVIÇOS</a>
             <a href="#portfolio" onClick={() => setIsOpen(false)} className="block px-3 py-3 hover:text-brand-gold border-b border-brand-border/50">PORTFÓLIO</a>
             <a href="#contato" onClick={() => setIsOpen(false)} className="block px-3 py-3 hover:text-brand-gold mb-4">CONTATO</a>
-            <a href="https://wa.me/5542991534011" target="_blank" rel="noopener noreferrer" className="inline-block font-heading text-sm font-bold text-black bg-gold-gradient px-6 py-3 rounded-md w-full">AGENDAR ORÇAMENTO</a>
+            <a href={`https://wa.me/55${whatsapp.replace(/\D/g, '')}`} target="_blank" rel="noopener noreferrer" className="inline-block font-heading text-sm font-bold text-black bg-gold-gradient px-6 py-3 rounded-md w-full">AGENDAR ORÇAMENTO</a>
           </div>
         </div>
       )}

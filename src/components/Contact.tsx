@@ -1,7 +1,21 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { supabase } from '@/lib/supabase'
 
 export default function Contact() {
+  const [contactInfo, setContactInfo] = useState({ whatsapp: '11999999999', email: 'contato@mgmusic.com' })
+
+  useEffect(() => {
+    supabase.from('site_settings').select('*').in('key', ['contact_whatsapp', 'contact_email']).then(({ data }) => {
+      if (data && data.length > 0) {
+        const map: Record<string, string> = {}
+        data.forEach(s => map[s.key] = s.value)
+        setContactInfo({
+          whatsapp: map['contact_whatsapp'] || '11999999999',
+          email: map['contact_email'] || 'contato@mgmusic.com'
+        })
+      }
+    })
+  }, [])
   const [form, setForm] = useState({ name: '', email: '', message: '' })
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
 
@@ -94,8 +108,15 @@ export default function Contact() {
                         <div className="flex gap-3 sm:col-span-2">
                             <i className="ph ph-whatsapp-logo text-xl text-brand-gold mt-1"></i>
                             <div>
-                                <a href="https://wa.me/5542991534011" target="_blank" rel="noopener noreferrer" className="font-bold text-white hover:text-brand-gold transition-colors text-lg">(42) 99153-4011</a>
+                                <a href={`https://wa.me/55${contactInfo.whatsapp.replace(/\D/g, '')}`} target="_blank" rel="noopener noreferrer" className="font-bold text-white hover:text-brand-gold transition-colors text-lg">{contactInfo.whatsapp}</a>
                                 <p className="text-xs">Atendimento via WhatsApp</p>
+                            </div>
+                        </div>
+                        <div className="flex gap-3 sm:col-span-2">
+                            <i className="ph ph-envelope-simple text-xl text-brand-gold mt-1"></i>
+                            <div>
+                                <a href={`mailto:${contactInfo.email}`} className="font-bold text-white hover:text-brand-gold transition-colors text-lg">{contactInfo.email}</a>
+                                <p className="text-xs">Atendimento via Email</p>
                             </div>
                         </div>
                     </div>
