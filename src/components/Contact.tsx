@@ -5,8 +5,8 @@ export default function Contact() {
   const [contactInfo, setContactInfo] = useState({ 
     whatsapp: '11999999999', 
     email: 'contato@mgmusic.com', 
-    mapEmbedUrl: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d115383.08051781297!2d-50.24719057861937!3d-25.094593451551062!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94e81a4159f81d11%3A0xa11ff6e7cc0e43ea!2sPonta%20Grossa%2C%20PR!5e0!3m2!1spt-BR!2sbr!4v1715000000000!5m2!1spt-BR!2sbr',
-    mapDirectUrl: 'https://maps.app.goo.gl/'
+    mapEmbedUrl: 'https://maps.google.com/maps?q=Rua%20dos%20Curi%C3%B3s,%2025,%20S%C3%A3o%20Jo%C3%A3o,%20Tel%C3%AAmaco%20Borba%20-%20PR&t=&z=16&ie=UTF8&iwloc=&output=embed',
+    mapDirectUrl: 'https://maps.google.com/?q=Rua+dos+Curiós,+25,+São+João,+Telêmaco+Borba+-+PR'
   })
 
   useEffect(() => {
@@ -17,8 +17,8 @@ export default function Contact() {
         setContactInfo({
           whatsapp: map['contact_whatsapp'] || '11999999999',
           email: map['contact_email'] || 'contato@mgmusic.com',
-          mapEmbedUrl: map['map_embed_url'] || 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d115383.08051781297!2d-50.24719057861937!3d-25.094593451551062!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94e81a4159f81d11%3A0xa11ff6e7cc0e43ea!2sPonta%20Grossa%2C%20PR!5e0!3m2!1spt-BR!2sbr!4v1715000000000!5m2!1spt-BR!2sbr',
-          mapDirectUrl: map['map_direct_url'] || 'https://maps.app.goo.gl/'
+          mapEmbedUrl: map['map_embed_url'] || 'https://maps.google.com/maps?q=Rua%20dos%20Curi%C3%B3s,%2025,%20S%C3%A3o%20Jo%C3%A3o,%20Tel%C3%AAmaco%20Borba%20-%20PR&t=&z=16&ie=UTF8&iwloc=&output=embed',
+          mapDirectUrl: map['map_direct_url'] || 'https://maps.google.com/?q=Rua+dos+Curiós,+25,+São+João,+Telêmaco+Borba+-+PR'
         })
       }
     })
