@@ -83,16 +83,29 @@ export default function Contact() {
                 </div>
 
                 <div className="flex flex-col justify-between">
-                    <div className="bg-brand-border/20 rounded-xl border border-brand-border p-2 mb-8 h-64 lg:h-auto lg:flex-1 relative overflow-hidden group">
-                        <div className="absolute inset-0 bg-[#e5e3df] opacity-80 mix-blend-luminosity grayscale group-hover:grayscale-0 transition-all duration-500">
-                             <img src="https://images.unsplash.com/photo-1524661135-423995f22d0b?q=80&w=800&auto=format&fit=crop" className="w-full h-full object-cover opacity-30" alt="Map Texture" />
+                    <div className="relative group mb-8">
+                        <div className="bg-black border border-brand-border rounded-xl p-2 w-full h-[250px] lg:h-[300px] overflow-hidden shadow-xl">
+                            <iframe 
+                              src={contactInfo.mapEmbedUrl.includes('<iframe') ? contactInfo.mapEmbedUrl.split('src="')[1]?.split('"')[0] || contactInfo.mapEmbedUrl : contactInfo.mapEmbedUrl} 
+                              width="100%" 
+                              height="100%" 
+                              style={{ border: 0, filter: 'invert(90%) hue-rotate(180deg)' }} 
+                              allowFullScreen 
+                              loading="lazy" 
+                              referrerPolicy="no-referrer-when-downgrade"
+                              className="rounded-lg opacity-60 group-hover:opacity-100 transition-opacity duration-500"
+                            ></iframe>
                         </div>
-                        <div className="absolute inset-0 flex flex-col items-center justify-center">
-                            <i className="ph-fill ph-map-pin text-4xl text-brand-dark drop-shadow-md mb-2"></i>
-                            <div className="bg-white px-3 py-1 rounded shadow-md text-brand-dark font-heading text-sm font-bold">
-                                Telêmaco Borba - PR
-                            </div>
-                        </div>
+    
+                        <a 
+                          href={contactInfo.mapDirectUrl} 
+                          target="_blank" 
+                          rel="noopener noreferrer" 
+                          className="absolute bottom-6 left-1/2 -translate-x-1/2 flex items-center gap-2 bg-brand-gold text-black px-6 py-3 rounded-full font-bold shadow-[0_0_20px_rgba(184,134,11,0.6)] hover:-translate-y-1 transition-all duration-300 z-10 whitespace-nowrap"
+                        >
+                          <i className="ph ph-map-pin text-xl"></i>
+                          Abrir no Google Maps
+                        </a>
                     </div>
 
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 text-brand-silver font-body text-sm">
@@ -129,31 +142,7 @@ export default function Contact() {
                     </div>
                 </div>
 
-                <div className="mt-8 relative group">
-                    <div className="bg-black border border-brand-border rounded-xl p-2 w-full h-[300px] overflow-hidden shadow-xl">
-                        {/* Clean embed url if user pasted full iframe code */}
-                        <iframe 
-                          src={contactInfo.mapEmbedUrl.includes('<iframe') ? contactInfo.mapEmbedUrl.split('src="')[1]?.split('"')[0] || contactInfo.mapEmbedUrl : contactInfo.mapEmbedUrl} 
-                          width="100%" 
-                          height="100%" 
-                          style={{ border: 0, filter: 'invert(90%) hue-rotate(180deg)' }} 
-                          allowFullScreen 
-                          loading="lazy" 
-                          referrerPolicy="no-referrer-when-downgrade"
-                          className="rounded-lg opacity-60 group-hover:opacity-100 transition-opacity duration-500"
-                        ></iframe>
-                    </div>
 
-                    <a 
-                      href={contactInfo.mapDirectUrl} 
-                      target="_blank" 
-                      rel="noopener noreferrer" 
-                      className="absolute bottom-6 left-1/2 -translate-x-1/2 flex items-center gap-2 bg-brand-gold text-black px-6 py-3 rounded-full font-bold shadow-[0_0_20px_rgba(184,134,11,0.6)] hover:-translate-y-1 transition-all duration-300 z-10 whitespace-nowrap"
-                    >
-                      <i className="ph ph-map-pin text-xl"></i>
-                      Abrir no Google Maps
-                    </a>
-                </div>
             </div>
         </div>
     </section>
