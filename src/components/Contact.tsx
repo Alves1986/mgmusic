@@ -2,16 +2,17 @@ import { useState, useEffect } from 'react'
 import { supabase } from '@/lib/supabase'
 
 export default function Contact() {
-  const [contactInfo, setContactInfo] = useState({ whatsapp: '11999999999', email: 'contato@mgmusic.com' })
+  const [contactInfo, setContactInfo] = useState({ whatsapp: '11999999999', email: 'contato@mgmusic.com', mapEmbedUrl: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d115383.08051781297!2d-50.24719057861937!3d-25.094593451551062!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94e81a4159f81d11%3A0xa11ff6e7cc0e43ea!2sPonta%20Grossa%2C%20PR!5e0!3m2!1spt-BR!2sbr!4v1715000000000!5m2!1spt-BR!2sbr' })
 
   useEffect(() => {
-    supabase.from('site_settings').select('*').in('key', ['contact_whatsapp', 'contact_email']).then(({ data }) => {
+    supabase.from('site_settings').select('*').in('key', ['contact_whatsapp', 'contact_email', 'map_embed_url']).then(({ data }) => {
       if (data && data.length > 0) {
         const map: Record<string, string> = {}
         data.forEach(s => map[s.key] = s.value)
         setContactInfo({
           whatsapp: map['contact_whatsapp'] || '11999999999',
-          email: map['contact_email'] || 'contato@mgmusic.com'
+          email: map['contact_email'] || 'contato@mgmusic.com',
+          mapEmbedUrl: map['map_embed_url'] || 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d115383.08051781297!2d-50.24719057861937!3d-25.094593451551062!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94e81a4159f81d11%3A0xa11ff6e7cc0e43ea!2sPonta%20Grossa%2C%20PR!5e0!3m2!1spt-BR!2sbr!4v1715000000000!5m2!1spt-BR!2sbr'
         })
       }
     })
@@ -120,6 +121,20 @@ export default function Contact() {
                             </div>
                         </div>
                     </div>
+                </div>
+
+                <div className="bg-black border border-brand-border rounded-xl p-2 w-full h-[300px] overflow-hidden shadow-xl mt-8">
+                    {/* Clean embed url if user pasted full iframe code */}
+                    <iframe 
+                      src={contactInfo.mapEmbedUrl.includes('<iframe') ? contactInfo.mapEmbedUrl.split('src="')[1]?.split('"')[0] || contactInfo.mapEmbedUrl : contactInfo.mapEmbedUrl} 
+                      width="100%" 
+                      height="100%" 
+                      style={{ border: 0, filter: 'invert(90%) hue-rotate(180deg)' }} 
+                      allowFullScreen 
+                      loading="lazy" 
+                      referrerPolicy="no-referrer-when-downgrade"
+                      className="rounded-lg opacity-80 hover:opacity-100 transition-opacity"
+                    ></iframe>
                 </div>
             </div>
         </div>

@@ -12,7 +12,8 @@ export default function SettingsAdmin() {
     email: '',
     instagram: '',
     facebook: '',
-    youtube: ''
+    youtube: '',
+    mapEmbedUrl: ''
   })
   
   const [loading, setLoading] = useState(false)
@@ -34,6 +35,7 @@ export default function SettingsAdmin() {
           instagram: map['social_instagram'] || 'https://instagram.com',
           facebook: map['social_facebook'] || 'https://facebook.com',
           youtube: map['social_youtube'] || 'https://youtube.com',
+          mapEmbedUrl: map['map_embed_url'] || 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d115383.08051781297!2d-50.24719057861937!3d-25.094593451551062!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94e81a4159f81d11%3A0xa11ff6e7cc0e43ea!2sPonta%20Grossa%2C%20PR!5e0!3m2!1spt-BR!2sbr!4v1715000000000!5m2!1spt-BR!2sbr'
         })
       }
     })
@@ -53,6 +55,7 @@ export default function SettingsAdmin() {
       { key: 'social_instagram', value: stats.instagram },
       { key: 'social_facebook', value: stats.facebook },
       { key: 'social_youtube', value: stats.youtube },
+      { key: 'map_embed_url', value: stats.mapEmbedUrl },
     ])
     setLoading(false)
     if (error) alert('Erro ao salvar as configurações: ' + error.message)
@@ -99,6 +102,11 @@ export default function SettingsAdmin() {
             <div>
               <label className="mb-2 block text-sm font-semibold text-brand-silver">E-mail de Contato</label>
               <input type="email" value={stats.email} onChange={e => setStats({...stats, email: e.target.value})} className="w-full rounded bg-black p-3 text-white border border-brand-border focus:border-brand-gold focus:outline-none" />
+            </div>
+            <div>
+              <label className="mb-2 block text-sm font-semibold text-brand-silver">URL de Incorporação do Google Maps</label>
+              <textarea value={stats.mapEmbedUrl} onChange={e => setStats({...stats, mapEmbedUrl: e.target.value})} className="w-full rounded bg-black p-3 text-white border border-brand-border focus:border-brand-gold focus:outline-none h-24" placeholder="<iframe src='...'> ou apenas o link de incorporação" />
+              <p className="text-xs text-brand-silver/50 mt-1">Dica: No Google Maps, clique em Compartilhar &gt; Incorporar um mapa e copie o link dentro do <b>src="..."</b>.</p>
             </div>
           </div>
         )}
