@@ -36,8 +36,8 @@ export default function SettingsAdmin() {
           instagram: map['social_instagram'] || 'https://instagram.com',
           facebook: map['social_facebook'] || 'https://facebook.com',
           youtube: map['social_youtube'] || 'https://youtube.com',
-          mapEmbedUrl: map['map_embed_url'] || 'https://maps.google.com/maps?q=Rua%20dos%20Curi%C3%B3s,%2025,%20S%C3%A3o%20Jo%C3%A3o,%20Tel%C3%AAmaco%20Borba%20-%20PR&t=&z=16&ie=UTF8&iwloc=&output=embed',
-          mapDirectUrl: map['map_direct_url'] || 'https://maps.google.com/?q=Rua+dos+Curiós,+25,+São+João,+Telêmaco+Borba+-+PR'
+          mapEmbedUrl: map['map_embed_url'] || 'https://maps.google.com/maps?q=Rua%20Jair%20Machado%20Nocera,%20350,%20Tel%C3%AAmaco%20Borba%20-%20PR&t=&z=16&ie=UTF8&iwloc=&output=embed',
+          mapDirectUrl: map['map_direct_url'] || 'https://maps.google.com/?q=Rua+Jair+Machado+Nocera,+350,+Telêmaco+Borba+-+PR'
         })
       }
     })

@@ -5,8 +5,8 @@ export default function Contact() {
   const [contactInfo, setContactInfo] = useState({ 
     whatsapp: '11999999999', 
     email: 'contato@mgmusic.com', 
-    mapEmbedUrl: 'https://maps.google.com/maps?q=Rua%20dos%20Curi%C3%B3s,%2025,%20S%C3%A3o%20Jo%C3%A3o,%20Tel%C3%AAmaco%20Borba%20-%20PR&t=&z=16&ie=UTF8&iwloc=&output=embed',
-    mapDirectUrl: 'https://maps.google.com/?q=Rua+dos+Curiós,+25,+São+João,+Telêmaco+Borba+-+PR'
+    mapEmbedUrl: 'https://maps.google.com/maps?q=Rua%20Jair%20Machado%20Nocera,%20350,%20Tel%C3%AAmaco%20Borba%20-%20PR&t=&z=16&ie=UTF8&iwloc=&output=embed',
+    mapDirectUrl: 'https://maps.google.com/?q=Rua+Jair+Machado+Nocera,+350,+Telêmaco+Borba+-+PR'
   })
 
   useEffect(() => {
@@ -17,8 +17,8 @@ export default function Contact() {
         setContactInfo({
           whatsapp: map['contact_whatsapp'] || '11999999999',
           email: map['contact_email'] || 'contato@mgmusic.com',
-          mapEmbedUrl: map['map_embed_url'] || 'https://maps.google.com/maps?q=Rua%20dos%20Curi%C3%B3s,%2025,%20S%C3%A3o%20Jo%C3%A3o,%20Tel%C3%AAmaco%20Borba%20-%20PR&t=&z=16&ie=UTF8&iwloc=&output=embed',
-          mapDirectUrl: map['map_direct_url'] || 'https://maps.google.com/?q=Rua+dos+Curiós,+25,+São+João,+Telêmaco+Borba+-+PR'
+          mapEmbedUrl: map['map_embed_url'] || 'https://maps.google.com/maps?q=Rua%20Jair%20Machado%20Nocera,%20350,%20Tel%C3%AAmaco%20Borba%20-%20PR&t=&z=16&ie=UTF8&iwloc=&output=embed',
+          mapDirectUrl: map['map_direct_url'] || 'https://maps.google.com/?q=Rua+Jair+Machado+Nocera,+350,+Telêmaco+Borba+-+PR'
         })
       }
     })
@@ -120,8 +120,7 @@ export default function Contact() {
                         <div className="flex gap-3">
                             <i className="ph ph-map-pin text-xl text-brand-gold mt-1"></i>
                             <div>
-                                <p>Rua dos Curiós, 25</p>
-                                <p>São João</p>
+                                <p>Rua Jair Machado Nocera, 350</p>
                                 <p>Telêmaco Borba - PR</p>
                             </div>
                         </div>
